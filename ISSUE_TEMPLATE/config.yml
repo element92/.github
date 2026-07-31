@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question / Discussion
+    url: https://github.com/orgs/lydium/discussions
+    about: For questions or discussion that isn't a concrete task, use Discussions instead of an Issue.
