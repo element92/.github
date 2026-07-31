@@ -1,0 +1,127 @@
+name: "Agent-Ready Task"
+description: "Use this for any coding task you want an AI agent (e.g. Claude Code) to pick up and work on. Fill in as much detail as you can — the agent only knows what's written here."
+title: "[Task]: "
+labels: ["agent-ready", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Before submitting:** an AI agent has no memory of past conversations, no access to your inbox or Slack, and can't ask you clarifying questions mid-task the way a colleague can. Write this as if you're briefing a smart contractor who has never seen this codebase before. Vague issues will either stall or produce a bad guess.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: One or two sentences. What needs to happen?
+      placeholder: "e.g. Add input validation to the CSV upload endpoint so malformed rows are rejected with a clear error instead of crashing the import."
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context & Background
+      description: Why does this matter? Link related issues, PRs, docs, or design discussions. If this came out of a conversation, summarize the relevant decision here — don't just say "per our discussion."
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_behavior
+    attributes:
+      label: Current Behavior / Problem
+      description: What happens today? Include exact error messages, screenshots (paste as image), or steps to reproduce if this is a bug.
+    validations:
+      required: false
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Desired Outcome / Acceptance Criteria
+      description: Be specific and testable. Use a checklist — the agent should be able to check its own work against this list before opening a PR.
+      placeholder: |
+        - [ ] Uploading a CSV with a non-numeric value in the "quantity" column returns a 400 with message "Invalid quantity in row N"
+        - [ ] Existing valid CSVs still import without changes to behavior
+        - [ ] Unit test covers at least one malformed-row case
+      value: |
+        - [ ] 
+        - [ ] 
+    validations:
+      required: true
+
+  - type: textarea
+    id: relevant_files
+    attributes:
+      label: Relevant Files & Paths
+      description: List specific file paths, modules, or directories to look at. If you don't know exact paths, list keywords/function names to search for. This dramatically cuts down agent exploration time.
+      placeholder: |
+        src/import/csv_parser.py
+        tests/import/test_csv_parser.py
+        Search for: "parse_row", "ImportError"
+    validations:
+      required: false
+
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Out of Scope / Do Not Touch
+      description: Anything the agent must NOT modify — other modules, config files, CI/CD workflows, database migrations, production settings, etc. This is a safety field, not an optional one.
+      placeholder: |
+        - Do not modify anything under /infra or .github/workflows
+        - Do not touch the billing module
+        - Do not add new dependencies without flagging it in the PR description
+    validations:
+      required: true
+
+  - type: textarea
+    id: verification
+    attributes:
+      label: How to Verify / Test
+      description: Exact commands to run and what success looks like. If there's no test suite for this area, say so explicitly and say what manual check should be done instead.
+      placeholder: |
+        Run: pytest tests/import/
+        Expected: all tests pass, including new test_malformed_quantity_rejected
+    validations:
+      required: true
+
+  - type: dropdown
+    id: touches_secrets
+    attributes:
+      label: Does this task involve credentials, API keys, secrets, or external services?
+      description: If yes, explain in Additional Notes. Agents should never be handed raw credentials in an issue body — reference a secrets manager or env var name instead.
+      options:
+        - "No"
+        - "Yes — details in Additional Notes"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: risk_level
+    attributes:
+      label: Risk Level
+      description: Your best judgment. Higher risk = more scrutiny before merge.
+      options:
+        - "Low — isolated change, easy to review"
+        - "Medium — touches shared code or multiple files"
+        - "High — touches production config, CI/CD, auth, billing, or infra"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: review_requirements
+    attributes:
+      label: Review & Safety Requirements
+      options:
+        - label: A human will review and approve the PR before merge (required for all agent-authored code)
+          required: true
+        - label: This task requires no new third-party dependencies without explicit flag/approval
+          required: false
+        - label: This task does not require network access beyond the existing CI environment
+          required: false
+
+  - type: textarea
+    id: additional_notes
+    attributes:
+      label: Additional Notes
+      description: Anything else — edge cases, known gotchas, style preferences, links to similar past PRs.
+    validations:
+      required: false
