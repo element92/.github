@@ -16,6 +16,19 @@ Fill these out completely, especially:
 
 An agent working from a vague issue will either stall waiting for clarity it can't get, or fill the gap with a guess. A well-filled issue is the single biggest lever you have over the quality of what comes back.
 
+## 1.5. Feature Requests vs. Agent-Ready Tasks
+
+**Feature Request** is intentionally a low-bar template — anyone, including non-technical users of a tool, can open one without needing to know acceptance criteria, file paths, or scope boundaries. It is deliberately *not* labeled `agent-ready`, because it isn't yet scoped enough for an agent (or, often, even a human) to start work from directly.
+
+The workflow is:
+
+1. Anyone opens a **Feature Request** describing a problem or desired outcome in plain terms.
+2. A maintainer (currently: Alex) reviews it during triage. This can be done with AI assistance — e.g. asking Claude to draft an Agent-Ready Task from the feature request's content — but a human should always review the result before it's posted, since only a human can judge whether the request is actually a good idea, correctly scoped, and safe to hand to an agent.
+3. The maintainer opens a new **Agent-Ready Task** issue with the refined Summary, Acceptance Criteria, Relevant Files, and Out of Scope fields filled in, linking back to the original Feature Request (e.g. "Refines #123").
+4. The original Feature Request is closed with a comment pointing to the new task, or left open and re-labeled if it needs more discussion first.
+
+This separation exists so the burden of precise, agent-usable specification falls on whoever is doing triage — not on whoever first noticed the problem.
+
 ## 2. Point the agent at the issue
 
 When you hand a task to Claude Code (or another agent), link the issue number and let it read the issue body directly rather than re-typing a summary from memory — the issue is the source of truth, and re-paraphrasing it introduces drift.
