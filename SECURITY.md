@@ -7,7 +7,7 @@
 Instead, report it privately using one of these channels:
 
 1. **Preferred: GitHub Private Vulnerability Reporting.** If enabled on the affected repository, go to the repo's **Security** tab → **Report a vulnerability**. This creates a private draft security advisory visible only to repository maintainers, with a built-in space to discuss and coordinate a fix before anything is disclosed.
-2. **Email:** security@lydium.ca <!-- update this if a different address should be used -->
+2. **Email:** it@lydium.ca
 
 Please include:
 - A description of the vulnerability and its potential impact
