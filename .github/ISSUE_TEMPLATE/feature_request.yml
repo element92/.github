@@ -1,5 +1,5 @@
 name: "Feature Request"
-description: "Suggest an idea, improvement, or new capability. You don't need to know the codebase — this is for describing a problem or opportunity, not a technical spec. A maintainer will review and, if it's a good fit, turn it into a scoped task."
+description: "Suggest an idea, improvement, or new capability. This is for describing a problem or opportunity, not a technical spec. A maintainer will review and turn it into a scoped task."
 title: "[Feature Request]: "
 labels: ["feature-request", "needs-triage"]
 body:
