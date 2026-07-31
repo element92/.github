@@ -1,0 +1,63 @@
+name: "Feature Request"
+description: "Suggest an idea, improvement, or new capability. You don't need to know the codebase — this is for describing a problem or opportunity, not a technical spec. A maintainer will review and, if it's a good fit, turn it into a scoped task."
+title: "[Feature Request]: "
+labels: ["feature-request", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        No technical detail needed here. Describe what you want to be able to do and why — a maintainer will follow up, ask questions if needed, and turn this into a properly scoped task before any work (human or AI-agent) starts on it.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem or opportunity is this about?
+      description: What are you trying to do, and what's getting in the way — or what would be better if this existed?
+      placeholder: "e.g. Every month I manually copy numbers from Ruddr into the billing spreadsheet, and it takes about an hour and I sometimes make mistakes."
+    validations:
+      required: true
+
+  - type: textarea
+    id: desired_outcome
+    attributes:
+      label: What would you like to be able to do instead?
+      description: Describe the end result you want, in plain terms. You don't need to know how it should be built.
+      placeholder: "e.g. I'd like the billing spreadsheet to update itself from Ruddr automatically, or at least flag any mismatches for me to check."
+    validations:
+      required: true
+
+  - type: textarea
+    id: who_affected
+    attributes:
+      label: Who does this affect?
+      description: Just you? Everyone doing a certain task? A specific client-facing workflow?
+    validations:
+      required: false
+
+  - type: textarea
+    id: current_workaround
+    attributes:
+      label: How are you handling this today, if at all?
+      description: Helps a maintainer judge urgency and whether there's a quick fix versus something bigger.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: How urgent does this feel to you?
+      description: Your honest gut read — this isn't binding, it just helps with triage.
+      options:
+        - "Nice to have, no rush"
+        - "Would meaningfully help soon"
+        - "Actively causing problems now"
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_notes
+    attributes:
+      label: Anything else?
+      description: Screenshots, links, examples from other tools, half-formed ideas on how it might work — all welcome, none required.
+    validations:
+      required: false
